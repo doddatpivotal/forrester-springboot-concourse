@@ -1,0 +1,6 @@
+{
+  "resourceGroup": "generated-boot-demo",
+  "docDbAccountName": "generatedbootappdocs",
+  "docDbName": "recommendations",
+  "location": "westus"
+}

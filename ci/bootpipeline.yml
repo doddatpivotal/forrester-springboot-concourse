@@ -1,0 +1,50 @@
+---
+resources: 
+# resource for my GitHub repo
+- name: resource-seroter-repo
+  type: git
+  source:
+    uri: https://github.com/rseroter/forrester-springboot-concourse.git
+    branch: master
+#resource for my S3 bucket to store the binary
+- name: resource-s3
+  type: s3
+  source:
+    bucket: spring-demo
+    region_name: us-west-2
+    regexp: forrester-boot-webapp-(.*).jar
+    access_key_id: {{s3-key-id}}
+    secret_access_key: {{s3-access-key}}
+# resource for my Cloud Foundry target
+- name: resource-pws
+  type: cf
+  source:
+    api: {{cf-api}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: {{cf-space}}
+    
+jobs:
+- name: build-binary
+  plan:
+    - get: resource-seroter-repo
+      trigger: true
+    - task: build-task
+      privileged: true
+      file: resource-seroter-repo/ci/build.yml
+    - put: resource-s3
+      params: 
+        file: resource-app/target/forrester-boot-webapp-0.0.1-SNAPSHOT.jar
+
+- name: deploy-to-prod
+  plan:
+    - get: resource-s3
+      trigger: true
+      passed: [build-binary]
+    - get: resource-seroter-repo
+    - put: resource-pws
+      params:
+        manifest: resource-seroter-repo/manifest-ci.yml
+       
+    

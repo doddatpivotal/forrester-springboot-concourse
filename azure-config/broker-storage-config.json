@@ -1,0 +1,6 @@
+{
+  "resourceGroup": "generated-boot-demo",
+  "storageAccountName": "generatedbootapplogs",
+  "location": "westus",
+  "accountType": "Standard_LRS"
+}
