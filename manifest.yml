@@ -1,9 +1,9 @@
 ---
 applications:
-- name: forrester-boot-webapp
+- name: springboot-azure-recommendations
   memory: 1G
   instances: 1
-  path: target/forrester-boot-webapp-0.0.1-SNAPSHOT.jar
+  path: target/springboot-azure-recommendations-0.0.1-SNAPSHOT.jar
   services:
   - bootdocdb
   - bootstorage

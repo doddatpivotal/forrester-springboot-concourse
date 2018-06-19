@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>pivotal.demo</groupId>
-	<artifactId>forrester-boot-webapp</artifactId>
+	<artifactId>springboot-azure-recommendations</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 

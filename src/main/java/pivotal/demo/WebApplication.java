@@ -23,10 +23,10 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 
 @RestController
 @SpringBootApplication
-public class ForresterBootWebappApplication {
+public class WebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ForresterBootWebappApplication.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 	
 	//for blob storage
