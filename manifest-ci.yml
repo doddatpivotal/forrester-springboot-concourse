@@ -1,9 +1,0 @@
----
-applications:
-- name: forrester-boot-webapp-ci
-  memory: 1G
-  instances: 1
-  path: ../resource-s3/forrester-boot-webapp-0.0.1-SNAPSHOT.jar
-  services:
-  - bootdocdb
-  - bootstorage

@@ -1,29 +1,34 @@
-# Create Document DB
+# PCF and Azure Services Demo
+The following demo leverages the [Azure Open Service Broker for PCF](https://docs.pivotal.io/partners/azure-open-service-broker-pcf/index.html).
+ 
+## Create Document DB
 Note ensure that you have registered your account to utilize CosmosDB
 ```
 az provider register --namespace Microsoft.DocumentDB
 ```
 Here is your command to create the service
 ```
-cf create-service azure-cosmosdb standard bootdocdb -c ./azure-config/broker-documentdb-config.json
+cf create-service azure-cosmosdb-sql sql-api bootdocdb -c '{"resourceGroup":"recommendations-demo", "location":"eastus"}'
 ```
 
-# Create Storage Service DB
+## Create Storage Service DB
 ```
-cf create-service azure-storage standard bootstorage -c ./azure-config/broker-storage-config.json
+cf create-service azure-storage general-purpose-storage-account bootstorage -c '{"resourceGroup":"recommendations-demo", "location":"eastus"}'
 ```
 
-# Test the app
-curl --data "cartId=101" springboot-azure-recommendations.apps.azure.winterfell.live/recommendations
+## Test the app
+```
+curl --data "cartId=101" springboot-azure-recommendations.<APPS_DOMAIN>/recommendations
+```
 
-# See the logs
+### See the logs
 - Azure portal
 - Click Storage Accounts
-- Click pcfazureservicebrokerapplogs
-- Click Blob Service -> Containers
+- Click on random name
+- Click Blob Service -> blobs
 - Click logs  
 
-# See the database entry
+### See the database entry
 - Azure portal
 - Click Azure Cosmos DB
 - Click random-name
@@ -33,3 +38,8 @@ curl --data "cartId=101" springboot-azure-recommendations.apps.azure.winterfell.
 - Click on Id  
 
 # Clean up
+```
+cf delete springboot-azure-recommendations
+cf delete-service bootstorage
+cf delete-service bootdocdb
+```

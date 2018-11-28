@@ -1,6 +1,0 @@
-{
-  "resourceGroup": "pcf-azure-service-broker",
-  "storageAccountName": "recommendationsapplogs",
-  "location": "eastus",
-  "accountType": "Standard_LRS"
-}

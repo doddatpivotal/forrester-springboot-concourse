@@ -1,6 +1,0 @@
-{
-  "resourceGroup": "pcf-azure-service-broker",
-  "docDbAccountName": "generatedbootappdocs",
-  "docDbName": "recommendations",
-  "location": "eastus"
-}
